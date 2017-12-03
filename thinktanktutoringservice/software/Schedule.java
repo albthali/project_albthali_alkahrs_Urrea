@@ -1,8 +1,8 @@
 package org.thinktanktutoringservice.software;
 
 import java.util.ArrayList;
-
-public class Schedule {
+import java.io.Serializable;
+public class Schedule implements Serializable{
 	private ArrayList<Slot>slots;
 	
 	public Schedule() {

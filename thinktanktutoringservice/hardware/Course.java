@@ -2,7 +2,8 @@ package org.thinktanktutoringservice.hardware;
 import org.thinktanktutoringservice.people.*;	
 import org.thinktanktutoringservice.software.*;	
 import java.util.*;
-public class Course {
+import java.io.Serializable;
+public class Course implements Serializable {
 
 	private String name;
 	private int number;
@@ -18,6 +19,7 @@ public class Course {
 		this.name = name;
 		this.number = number;
 		this.department = department;
+		this.tutors = new ArrayList<Tutor>();
 		department.addCourse(this);
 	}
 	public String getName() {

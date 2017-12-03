@@ -2,8 +2,8 @@ package org.thinktanktutoringservice.hardware;
 
 import org.thinktanktutoringservice.software.Schedule;
 import org.thinktanktutoringservice.software.Slot;
-
-public class Room {
+import java.io.Serializable;
+public class Room  implements Serializable{
 
 	private String building;
 	private Integer number;
@@ -28,7 +28,7 @@ public class Room {
 	public Room(String building, Integer number) {
 		this.setBuilding(building);
 		this.setNumber(number);
-		addSlot(null);
+		//addSlot(null);
 	}
 
 	public String getBuilding() {

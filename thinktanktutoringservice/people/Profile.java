@@ -1,8 +1,8 @@
 package org.thinktanktutoringservice.people;
 import org.thinktanktutoringservice.software.*;
 import java.util.ArrayList;
-
-public abstract class Profile {
+import java.io.Serializable;
+public abstract class Profile implements Serializable {
 	protected String name;
 	protected String email;
 	protected String DOB;

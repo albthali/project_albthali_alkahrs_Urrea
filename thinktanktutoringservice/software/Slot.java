@@ -1,7 +1,8 @@
 package org.thinktanktutoringservice.software;
 import org.thinktanktutoringservice.hardware.*;
+import java.io.Serializable;
 import org.thinktanktutoringservice.people.*;
-public abstract class Slot {
+public abstract class Slot implements Serializable {
 	
 	protected String time;
 	protected Room room;

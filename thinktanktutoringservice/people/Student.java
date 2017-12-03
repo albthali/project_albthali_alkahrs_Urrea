@@ -1,8 +1,9 @@
 package org.thinktanktutoringservice.people;
 import org.thinktanktutoringservice.hardware.*;
+import java.io.Serializable;
 import org.thinktanktutoringservice.software.*;
 import java.util.*;
-public class Student extends Profile {
+public class Student extends Profile implements Serializable {
 private int iD;
 private Department department;
 public int getiD() {

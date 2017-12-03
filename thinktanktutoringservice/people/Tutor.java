@@ -1,8 +1,9 @@
 package org.thinktanktutoringservice.people;
 import org.thinktanktutoringservice.software.*;
+import java.io.Serializable;
 import org.thinktanktutoringservice.hardware.*;
 import java.util.*;
-public class Tutor extends Profile {
+public class Tutor extends Profile implements Serializable{
 	private int iD;
 	private ArrayList<Course> proficiency;
 	private Schedule schedule;

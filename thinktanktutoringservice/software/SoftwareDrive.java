@@ -44,16 +44,16 @@ public class SoftwareDrive {
 		TutorSlot tutorSlot2;
 		
 		tutorSlot1 = new TutorSlot();
-		tutorSlot2 = new TutorSlot(tutor2);
+		//tutorSlot2 = new TutorSlot(tutor2);
 		
 		tutorSlot1.setTutor(tutor1);
 		tutorSlot1.setStudent(student1);
 		tutorSlot1.setTime(time1);
 		tutorSlot1.setRoom(room1);
 		
-		tutorSlot2.setStudent(student2);
-		tutorSlot2.setTime(time2);
-		tutorSlot2.setRoom(room2);
+//		tutorSlot2.setStudent(student2);
+//		tutorSlot2.setTime(time2);
+//		tutorSlot2.setRoom(room2);
 		
 		Course course1;
 		Course course2;
@@ -74,9 +74,9 @@ public class SoftwareDrive {
 		dropinSlot.setRoom(room1);
 		dropinSlot.setTime(time1);
 		
-		schedule.addSlot(tutorSlot1);
-		schedule.addSlot(tutorSlot2);
-		schedule.addSlot(dropinSlot);
+//		schedule.addSlot(tutorSlot1);
+//		schedule.addSlot(tutorSlot2);
+//		schedule.addSlot(dropinSlot);
 		
 		MasterSchedule masterSchedule;
 		
@@ -108,10 +108,10 @@ public class SoftwareDrive {
 		schedule.addSlot(tutorSlot1);
 		
 		/* TutorSlot Test */
-		System.out.println(tutorSlot2.getTutor().getiD());
-		System.out.println(tutorSlot2.getStudent().getiD());
-		System.out.println(tutorSlot2.getRoom().getName());
-		System.out.println(tutorSlot2.getTime());
+//		System.out.println(tutorSlot2.getTutor().getiD());
+//		System.out.println(tutorSlot2.getStudent().getiD());
+//		System.out.println(tutorSlot2.getRoom().getName());
+//		System.out.println(tutorSlot2.getTime());
 		
 		/* DropinSlot Test */
 		dropinSlot.addCourse(course1);

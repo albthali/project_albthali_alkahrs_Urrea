@@ -4,13 +4,18 @@ import org.thinktanktutoringservice.people.*;
 import java.util.ArrayList;
 
 import org.thinktanktutoringservice.people.Tutor;
-
-public class DropinSlot extends Slot {
+import java.io.Serializable;
+public class DropinSlot extends Slot implements Serializable{
 
 	private ArrayList<Course>courses;
 	private ArrayList<Tutor>tutors;
-	
 	public DropinSlot() {
+		
+		courses = new ArrayList<Course>();
+		tutors = new ArrayList<Tutor>();
+	}
+	public DropinSlot(String time, Room room) {
+		super(time, room);
 		courses = new ArrayList<Course>();
 		tutors = new ArrayList<Tutor>();
 	}

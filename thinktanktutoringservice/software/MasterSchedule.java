@@ -4,19 +4,29 @@ import org.thinktanktutoringservice.people.*;
 import java.util.ArrayList;
 
 import org.thinktanktutoringservice.people.Tutor;
+import java.io.Serializable;
 
-
-public class MasterSchedule {
+public class MasterSchedule implements Serializable {
 
 	public ArrayList<Tutor>tutors;
 	public ArrayList<Room>rooms;
+	public ArrayList<Student> students;
 	public ArrayList<Department>departments;
 	public Schedule dropinSchedule;
 	
+	public ArrayList<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(ArrayList<Student> students) {
+		this.students = students;
+	}
+
 	public MasterSchedule() {
 		tutors = new ArrayList<Tutor>();
 		rooms = new ArrayList<Room>();
 		departments = new ArrayList<Department>();
+		students = new ArrayList<Student>();
 		dropinSchedule = new Schedule();
 	}
 	

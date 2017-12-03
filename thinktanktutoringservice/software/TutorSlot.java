@@ -1,9 +1,10 @@
 package org.thinktanktutoringservice.software;
 
+import org.thinktanktutoringservice.hardware.Room;
 import org.thinktanktutoringservice.people.Student;
 import org.thinktanktutoringservice.people.Tutor;
-
-public class TutorSlot extends Slot {
+import java.io.Serializable;
+public class TutorSlot extends Slot implements Serializable {
 
 	private Tutor tutor;
 	private Student student;
@@ -13,7 +14,8 @@ public class TutorSlot extends Slot {
 		student = null;
 	}
 	
-	public TutorSlot(Tutor tutor) {
+	public TutorSlot(String time, Room room, Tutor tutor) {
+		super(time , room);
 		this.tutor = tutor;
 		student = null;
 	}
