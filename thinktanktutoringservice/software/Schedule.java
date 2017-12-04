@@ -40,4 +40,12 @@ public class Schedule implements Serializable{
 		}
 		return ls;
 	}
+	public Slot findslot(String date, String stime, String etime) {
+		for(Slot s : slots) {
+			if(s.getDate().equals(date)) {
+				if(stime.equals(s.getTimestart()) && etime.equals(s.getTimend())) return s;
+			}
+		}
+		return null;
+	}
 }

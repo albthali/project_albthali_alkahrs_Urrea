@@ -87,4 +87,11 @@ public class MasterSchedule implements Serializable {
 			return true;
 		}
 	}
+	public Room getroom(String building , Integer number) {
+		for(Room r: rooms) {
+			if (r.getBuilding().equals(building) && r.getNumber().equals(number)) return r;
+			
+		}
+		return null;
+	}
 }

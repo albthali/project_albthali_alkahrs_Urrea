@@ -69,4 +69,21 @@ public abstract class Slot implements Serializable {
 	}
 	abstract boolean isTutorslot();
 	abstract Student getstudent();
+	public static boolean checkconflict(Slot s, Slot c) {
+		if(s.getDate().equals(c.getDate())) {
+			Integer starttimes = Integer.parseInt(Character.toString(s.getTimestart().charAt(0))) ;
+			Integer endtimes =  Integer.parseInt(Character.toString(s.getTimend().charAt(0)));
+			if(starttimes >= 10 && endtimes < 10) starttimes = starttimes- 12;
+			
+			Integer difference = endtimes - starttimes;
+			Integer starttimec = Integer.parseInt(Character.toString(c.getTimestart().charAt(0))) ;
+			Integer endtimec =  Integer.parseInt(Character.toString(c.getTimend().charAt(0)));
+			if(endtimec >= starttimes && endtimec - starttimes <= difference && endtimec !=  starttimes) return true;
+			else if (starttimec <= endtimes && endtimes - starttimec <= difference && starttimec !=endtimes  ) return true;
+			else return false;
+			
+			
+		}
+		else return false;
+	}
 }
