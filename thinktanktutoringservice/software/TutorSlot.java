@@ -14,8 +14,8 @@ public class TutorSlot extends Slot implements Serializable {
 		student = null;
 	}
 	
-	public TutorSlot(String time, Room room, Tutor tutor) {
-		super(time , room);
+	public TutorSlot(String date,String day, String timestart, String timend , Room room, Tutor tutor) {
+		super(date, day, timestart, timend ,  room);
 		this.tutor = tutor;
 		student = null;
 	}
@@ -32,7 +32,11 @@ public class TutorSlot extends Slot implements Serializable {
 		this.student = student;
 	}
 	
-	public Student getStudent() {
+	public Student getstudent() {
 		return student;
 	}
+	public boolean isTutorslot() {
+		return true;
+	}
+
 }

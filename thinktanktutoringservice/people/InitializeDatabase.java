@@ -87,17 +87,17 @@ public static void main (String[] args) {
 	b = t6.addCourse(c3);
 	b = t6.addCourse(c2);
 	b = t6.addCourse(c1);
-	TutorSlot ts1 = new TutorSlot("2017 5 12 Tuesday 4:00 6:00", r1 , t1);
-	TutorSlot ts2 = new TutorSlot("2017 5 12 Tuesday 2:00 4:00", r1 , t2);
-	TutorSlot ts3 = new TutorSlot("2017 5 12 Tuesday 12:00 2:00", r1 , t1);
-	TutorSlot ts4 = new TutorSlot("2017 4 12 Monday 12:00 2:00", r2 , t3);
-	TutorSlot ts5 = new TutorSlot("2017 4 12 Monday 2:00 4:00", r2 , t3);
-	TutorSlot ts6 = new TutorSlot("2017 4 12 Monday 12:00 2:00", r3 , t4);
-	TutorSlot ts7 = new TutorSlot("2017 4 12 Monday 2:00 4:00", r3 , t4);
-	TutorSlot ts8 = new TutorSlot("2017 6 12 Wednesday 2:00 4:00", r4 , t5);
-	TutorSlot ts9 = new TutorSlot("2017 6 12 Wednesday 4:00 6:00", r4 , t5);
-	TutorSlot ts10 = new TutorSlot("2017 6 12 Wednesday 12:00 2:00", r5 , t6);
-	TutorSlot ts11 = new TutorSlot("2017 6 12 Wednesday 2:00 4:00", r5 , t6);
+	TutorSlot ts1 = new TutorSlot("2017/5/12", "Tuesday", "4:00","6:00", r1 , t1);
+	TutorSlot ts2 = new TutorSlot("2017/5/12", "Tuesday", "2:00","4:00", r1 , t2);
+	TutorSlot ts3 = new TutorSlot("2017/5/12", "Tuesday ","12:00","2:00", r1 , t1);
+	TutorSlot ts4 = new TutorSlot("2017/4/12", "Monday", "12:00","2:00", r2 , t3);
+	TutorSlot ts5 = new TutorSlot("2017/4/12", "Monday", "2:00","4:00", r2 , t3);
+	TutorSlot ts6 = new TutorSlot("2017/4/12", "Monday", "12:00","2:00", r3 , t4);
+	TutorSlot ts7 = new TutorSlot("2017/4/12 ","Monday" ,"2:00","4:00", r3 , t4);
+	TutorSlot ts8 = new TutorSlot("2017/6/12", "Wednesday", "2:00","4:00", r4 , t5);
+	TutorSlot ts9 = new TutorSlot("2017/6/12", "Wednesday", "4:00","6:00", r4 , t5);
+	TutorSlot ts10 = new TutorSlot("2017/6/12", "Wednesday", "12:00","2:00", r5 , t6);
+	TutorSlot ts11 = new TutorSlot("2017/6/12", "Wednesday", "2:00","4:00", r5 , t6);
 	t1.addSlot(ts1);
 	t2.addSlot(ts2);
 	t1.addSlot(ts3);
@@ -109,12 +109,12 @@ public static void main (String[] args) {
 	t5.addSlot(ts9);
 	t6.addSlot(ts10);
 	t6.addSlot(ts11);
-	 DropinSlot ds1 = new DropinSlot("2017 4 12 Monday 1:00 3:00", r6);
+	 DropinSlot ds1 = new DropinSlot("2017/4/12", "Monday", "1:00", "3:00", r6);
 	 ds1.addTutor(t1);
 	 ds1.addTutor(t6);
 	 ds1.addCourse(c1);
 	 ds1.addCourse(c3);
-	 DropinSlot ds2 = new DropinSlot("2017 4 12 Monday 3:00 6:00", r7);
+	 DropinSlot ds2 = new DropinSlot("2017/4/12", "Monday", "3:00", "6:00", r7);
 	 ds2.addTutor(t2);
 	 ds2.addTutor(t5);
 	 ds2.addCourse(c4);
@@ -158,6 +158,7 @@ public static void main (String[] args) {
 	 Admin.saveData(database);
 	 Admin check = new Admin();
 	 check = Admin.loadData();
+	 TutorGUI tts = new TutorGUI(check, t1);
 	 
 	 
 //	 master.schedule.addSlot(ds1);

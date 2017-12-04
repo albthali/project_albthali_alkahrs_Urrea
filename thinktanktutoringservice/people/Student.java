@@ -69,7 +69,7 @@ public void setSchedule(Schedule schedule) {
 }
 public boolean makeAppointment(Slot newslot) {
 	for(Slot s: this.schedule.getSlots()) {
-		if(newslot.getTime().equals(s.getTime())) return false;
+		if(newslot.getTimestart().equals(s.getTimestart())) return false;
 				
 	}
 	this.schedule.addSlot(newslot);

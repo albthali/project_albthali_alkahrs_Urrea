@@ -26,4 +26,18 @@ public class Schedule implements Serializable{
 		else
 			slots.remove(newSlot);
 	}
+	public int Tutorslots() {
+		int i = 0;
+		for( Slot s : slots) {
+			if(s.isTutorslot()) i++;
+		}
+		return i;
+	}
+	public ArrayList<Slot> Tutorslotslist() {
+		ArrayList<Slot> ls = new ArrayList<Slot>();
+		for(Slot s : slots) {
+			if(s.isTutorslot()) ls.add(s);
+		}
+		return ls;
+	}
 }

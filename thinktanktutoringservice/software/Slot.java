@@ -4,26 +4,61 @@ import java.io.Serializable;
 import org.thinktanktutoringservice.people.*;
 public abstract class Slot implements Serializable {
 	
-	protected String time;
+	protected String timestart;
+	protected String timend;
+	protected String date;
+	protected String day;
+	
+	public String getTimestart() {
+		return timestart;
+	}
+
+	public void setTimestart(String timestart) {
+		this.timestart = timestart;
+	}
+
+	public String getTimend() {
+		return timend;
+	}
+
+	public void setTimend(String timend) {
+		this.timend = timend;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
 	protected Room room;
 	
 	public Slot() {
-		time = null;
+		timestart = "";
+		timend = "";
+		date = "";
+		day = "";
 		room = null;
 	}
 	
-	public Slot(String time, Room room) {
-		this.time = time;
+	public Slot(String date,String day, String timestart, String timend , Room room) {
+		this.date = date;
+		this.day = day;
+		this.timestart = timestart;
+		this.timend = timend;
 		this.room = room;
 	}
 	
-	public void setTime(String time) {
-		this.time = time;
-	}
 	
-	public String getTime() {
-		return time;
-	}
 	
 	public void setRoom(Room room) {
 		this.room = room;
@@ -32,4 +67,6 @@ public abstract class Slot implements Serializable {
 	public Room getRoom() {
 		return room;
 	}
+	abstract boolean isTutorslot();
+	abstract Student getstudent();
 }

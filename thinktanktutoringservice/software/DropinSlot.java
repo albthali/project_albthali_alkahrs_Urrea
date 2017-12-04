@@ -2,8 +2,6 @@ package org.thinktanktutoringservice.software;
 import org.thinktanktutoringservice.hardware.*;
 import org.thinktanktutoringservice.people.*;
 import java.util.ArrayList;
-
-import org.thinktanktutoringservice.people.Tutor;
 import java.io.Serializable;
 public class DropinSlot extends Slot implements Serializable{
 
@@ -14,8 +12,8 @@ public class DropinSlot extends Slot implements Serializable{
 		courses = new ArrayList<Course>();
 		tutors = new ArrayList<Tutor>();
 	}
-	public DropinSlot(String time, Room room) {
-		super(time, room);
+	public DropinSlot(String date,String day, String timestart, String timend , Room room) {
+		super(date, day, timestart, timend ,  room);
 		courses = new ArrayList<Course>();
 		tutors = new ArrayList<Tutor>();
 	}
@@ -40,5 +38,11 @@ public class DropinSlot extends Slot implements Serializable{
 	
 	public ArrayList<Tutor> getTutors() {
 		return tutors;
+	}
+	public boolean isTutorslot() {
+		return false;
+	}
+	public Student getstudent() {
+		return null;
 	}
 }

@@ -47,10 +47,10 @@ public class Tutor extends Profile implements Serializable{
 		this.payrate = payrate;
 	}
 	public boolean addSlot(Slot newslot) {
-		for(Slot s: this.schedule.getSlots()) {
-			if(newslot.getTime().equals(s.getTime())) return false;
-					
-		}
+//		for(Slot s: this.schedule.getSlots()) {
+//			if(newslot.getTime().equals(s.getTime())) return false;
+//					
+//		}
 		this.schedule.addSlot(newslot);
 		return true;
 	}
