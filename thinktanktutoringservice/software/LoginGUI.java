@@ -167,7 +167,7 @@ public boolean containsNetID(String id, String pass)
 		if(stu.getUsername().equals(id) && stu.checkPassword(pass)) 
 		{
 			dispose();
-			StudentGUI stugui = new StudentGUI(stu);   
+			StudentGUI stugui = new StudentGUI(stu,administrator );   
 			return true;
 			}
 		

@@ -45,4 +45,7 @@ public class DropinSlot extends Slot implements Serializable{
 	public Student getstudent() {
 		return null;
 	}
+	public ArrayList<Course> getcourse(){
+		return this.courses;
+	}
 }

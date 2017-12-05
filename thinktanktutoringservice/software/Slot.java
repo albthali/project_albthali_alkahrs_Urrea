@@ -1,6 +1,8 @@
 package org.thinktanktutoringservice.software;
 import org.thinktanktutoringservice.hardware.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import org.thinktanktutoringservice.people.*;
 public abstract class Slot implements Serializable {
 	
@@ -86,4 +88,5 @@ public abstract class Slot implements Serializable {
 		}
 		else return false;
 	}
+	abstract ArrayList<Course> getcourse();
 }
