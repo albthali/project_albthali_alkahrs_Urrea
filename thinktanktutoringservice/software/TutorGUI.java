@@ -1,5 +1,7 @@
 package org.thinktanktutoringservice.software;
 import org.thinktanktutoringservice.people.*;
+//import org.thinktanktutoringservice.software.StudentGUI.addCourseListener;
+//import org.thinktanktutoringservice.software.StudentGUI.dropCourseListener;
 import org.thinktanktutoringservice.hardware.*;
 import javax.swing.*;
 import java.awt.*;
@@ -13,100 +15,131 @@ public class TutorGUI extends JFrame{
 	JButton Availablitiy;
 	JButton addappointment;
 	JButton removeappointment;
+	private JPanel panel;    // A panel container
+	   private Admin admins;
+	   private MasterSchedule MS;
 	
+	  
+	   
+	  // private JButton cancelButton;       // Performs calculation
+	   private final int WINDOW_WIDTH = 400;  // Window width
+	   private final int WINDOW_HEIGHT = 400; // Window height
+	   private MasterSchedule masterSchedule; // should be public
 	public TutorGUI(Admin a, Tutor t ) {
-		super("Hello  " + t.getName());
-		admin = a;
-		tutor = t;
-		setSize(1000, 1000);
-		setLayout(new BorderLayout());
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		TutorGuiBuild();
-		setVisible(true);
+		super("Hi, "+ t.getName());
+		this.tutor = t;
+		this.admins = a;
+		this.admin = a;
+		this.MS = a.getMasterschedule();
+		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+
+	      // Specify what happens when the close
+	      // button is clicked.
+	     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     JTabbedPane tabbedPane = new JTabbedPane();
+
+	      // Build the panel and add it to the frame.
+	      
+
+	      // Add the panel to the frame's content pane.
+	      tabbedPane.addTab("Home", HomePanel());
+	      tabbedPane.addTab("Schedule", SchedulePanel());
+	     
+	      add(tabbedPane);
+	      setVisible(true);
 	}
-	public void TutorGuiBuild() {
-		Home = new JButton("Home");
-		Schedule = new JButton("Schedule");
-		Availablitiy = new JButton("Availablitiy");
-		addappointment = new JButton("Add Appointment");
-		removeappointment = new JButton("remove Appointment");
-		JPanel legends = new JPanel(new GridLayout(3,0));
-		Home.addActionListener(new buttonlisten());
-		Schedule.addActionListener(new buttonlisten());
-		Availablitiy.addActionListener(new buttonlisten());
-		addappointment.addActionListener(new buttonlisten());
-		removeappointment.addActionListener(new buttonlisten());
-		legends.add(Home);
-		legends.add(Schedule);
-		legends.add(Availablitiy);
-		add(legends, BorderLayout.WEST);
-		//ScheduleGUI();
+	 private JPanel HomePanel()
+	   {
+		 
+		 JButton addCourseButton;       // Performs calculation
+		 JButton dropCourseButton;
+		   
+	      // Buttons
 		
+
+	      // Create a panel to hold the components.
+	      panel = new JPanel();	      
+	 
+	      JPanel dummyPanelpic = new JPanel();
+	      ImageIcon imageIcon = new ImageIcon("/Users/x/Desktop/SelfPortrait.jpg"); // load the image to a imageIcon
+	      Image image = imageIcon.getImage(); // transform it 
+	      Image newimg = image.getScaledInstance(140, 145,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+	      imageIcon = new ImageIcon(newimg);  // transform it back
+	      dummyPanelpic.add(new JLabel(imageIcon));
+	      JTextArea ta = new JTextArea(9,11);
+	      String string = new String();
+	      string = tutor.getName()+"\n"+tutor.getEmail();
+	      
+	      ta.setText(string);
+	      dummyPanelpic.add(ta);
+	      
+	      
+	      panel.setLayout(new BorderLayout());
+	      panel.add(dummyPanelpic,BorderLayout.CENTER);
+
+	      panel.setVisible(true);
+	      return panel;
+
+	   }
+	 public void reset() {
+		 dispose();
+		 TutorGUI tts = new TutorGUI(Admin.loadData(), this.tutor );
+	 }
+	 private JPanel SchedulePanel()
+	 {
 		
-		
-	}
-	public void HomeGUI() {
-		
-	}
-	public void ScheduleGUI() {
-		JPanel panels = new JPanel(new GridLayout(2,0));
-		int rows = tutor.getSchedule().Tutorslots();
-		JPanel Table = new JPanel(new GridLayout(rows + 1,4));
-//		Table.add(new JLabel("Course "));
-		Table.add(new JLabel("Student"));
-		Table.add(new JLabel("Date"));
-		Table.add(new JLabel("Time"));
-		Table.add(new JLabel("Location"));
-		ArrayList<Slot> tsch = tutor.getSchedule().Tutorslotslist();
-		for(int i = 0 ; i < rows ; i++) {
-			if(tsch.get(i).getstudent() == null) Table.add(new JLabel("no student"));
-			else Table.add(new JLabel(tsch.get(i).getstudent().getName()));
-			Table.add(new JLabel(tsch.get(i).getDate()));
-			Table.add(new JLabel(tsch.get(i).getTimestart() + "-" + tsch.get(i).getTimend()));
-			Table.add(new JLabel(tsch.get(i).getRoom().getBuilding()));
+		 panel = new JPanel();
+		 addappointment = new JButton("Add appointment");
+		 removeappointment = new JButton("Remove appointment");
+		 addappointment.addActionListener(new buttonlisten());
+		 removeappointment.addActionListener(new buttonlisten());
+		 JPanel dummyPanel = new JPanel();
+	      dummyPanel.add(addappointment);
+	      dummyPanel.add(removeappointment);
+	      dummyPanel.setVisible(true);
+		 
+	
+			 String datas[][] = new String[tutor.getSchedule().getSlots().size()][5];
+			 for(int i = 0; i <tutor.getSchedule().getSlots().size(); i ++ ) {
+				 datas[i][0] = tutor.getSchedule().getSlots().get(i).getRoom().getBuilding();
+				 datas[i][1] =String.valueOf(tutor.getSchedule().getSlots().get(i).getRoom().getNumber());
+				 datas[i][2] = tutor.getSchedule().getSlots().get(i).getDate();
+				 datas[i][3] = tutor.getSchedule().getSlots().get(i).getTimestart() +"-"+ tutor.getSchedule().getSlots().get(i).getTimend();
+				 datas[i][3] = tutor.getSchedule().getSlots().get(i).getTimestart() +"-"+ tutor.getSchedule().getSlots().get(i).getTimend();
+				 if(tutor.getSchedule().getSlots().get(i).isTutorslot()) {
+					 if(tutor.getSchedule().getSlots().get(i).getstudent() == null) datas[i][4] = "Vacant";
+					 else  datas[i][4] = tutor.getSchedule().getSlots().get(i).getstudent().getName();
+				 }
+				 else datas[i][4] = "Drop in Hour";
+			 }
+	      
+			 String column[]={"Building","Room#","date", "time", "Student"};         
+			 JTable jt=new JTable(datas,column);    
+			 jt.setBounds(50,50,400,400);          
+			 JScrollPane sp=new JScrollPane(jt);
+			 panel.setLayout(new BorderLayout());
+			 panel.add(jt, BorderLayout.CENTER);
+			 panel.add(dummyPanel, BorderLayout.SOUTH);
+			 panel.setVisible(true);
 			
-		}
-		panels.add(Table);
-		JPanel addorremove = new JPanel(new GridLayout(0,2));
-		addorremove.add(addappointment);
-		addorremove.add(removeappointment);
-		panels.add(addorremove);
-		this.add(panels, BorderLayout.CENTER);
-		this.revalidate();
-	}
+			return panel; 
+	 }
+
 	private class buttonlisten implements ActionListener{
 		public void actionPerformed(ActionEvent e) 
 		{
 			JButton source = (JButton)(e.getSource());
 			
-			if(source.equals(Home))
-			{
-				Homepressed();	
-			}
-			else if(source.equals(Schedule))
-			{
-				Schedulepressed();
-			}
-			else if (source.equals(Availablitiy)) {
-				Availablitiypressed();
-			}
-			else if((source.equals(addappointment))) {
+			
+			
+			 if((source.equals(addappointment))) {
 				addppointmenthandle();
 			}
 			else if((source.equals(removeappointment))) removeappointmenthandle();
 			
 			
 }
-		public void Homepressed() {
-			
-		}
-		public void 	Schedulepressed() {
-			ScheduleGUI();
-			
-		}
-		public void Availablitiypressed() {
-			
-		}
+	
 		public void addppointmenthandle() {
 			addappointment temp = new addappointment();
 		}
@@ -128,7 +161,7 @@ public class TutorGUI extends JFrame{
 			
 			super("Add Appointment");
 		
-		setSize(350, 150);
+		setSize(290, 230);
 		setLayout(new BorderLayout());
 
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -144,20 +177,20 @@ public class TutorGUI extends JFrame{
 	public void addappointmentGUI() {
 		 JPanel legends = new JPanel(new GridLayout(5,1));
 		 JPanel studentnamerino =  new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		 studentnamerino.add(new JLabel("date:         "));
+		 studentnamerino.add(new JLabel("  date:         "));
 		 legends.add(studentnamerino);
 		 JPanel departs =  new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		 departs.add(new JLabel("  starts at:     "));
+		 departs.add(new JLabel("  starts at:         "));
 		 legends.add(departs);
 		
 		 JPanel courses =  new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		 courses.add(new JLabel("    ends at :          "));
+		 courses.add(new JLabel("  ends at :         "));
 		 legends.add(courses);
 		 JPanel buildingf =  new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		 buildingf.add(new JLabel("    Building :          "));
+		 buildingf.add(new JLabel("  Building :         "));
 		 legends.add(buildingf);
 		 JPanel roomnumbers =  new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		 roomnumbers.add(new JLabel("    Room# :          "));
+		 roomnumbers.add(new JLabel("  Room# :         "));
 		 legends.add(roomnumbers);
 		 JPanel texts = new JPanel(new GridLayout(5,1));
 		 texts.add(date);
@@ -215,8 +248,10 @@ public class TutorGUI extends JFrame{
 							else if (ssd == true)JOptionPane.showMessageDialog(null, "Time Conflict", "Error adding appointment", JOptionPane.PLAIN_MESSAGE);
 							else {
 								tutor.addSlot(temps);
+								Admin.saveData(admin);
+								
 								dispose();
-								 ScheduleGUI();
+								reset();
 							}
 				}
 
@@ -240,7 +275,7 @@ public class TutorGUI extends JFrame{
 		
 		removeappointment(){
 			
-			super("remove Appointment");
+			super("Remove Appointment");
 		
 		setSize(350, 150);
 		setLayout(new BorderLayout());
@@ -261,11 +296,11 @@ public class TutorGUI extends JFrame{
 		 studentnamerino.add(new JLabel("date:         "));
 		 legends.add(studentnamerino);
 		 JPanel departs =  new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		 departs.add(new JLabel("  starts at:     "));
+		 departs.add(new JLabel("starts at:         "));
 		 legends.add(departs);
 		
 		 JPanel courses =  new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		 courses.add(new JLabel("    ends at :          "));
+		 courses.add(new JLabel("ends at:         "));
 		 legends.add(courses);
 		
 		 JPanel texts = new JPanel(new GridLayout(3,1));
@@ -320,7 +355,9 @@ public class TutorGUI extends JFrame{
 							else {
 								tutor.getSchedule().getSlots().remove(temps);
 								dispose();
-								 ScheduleGUI();
+								Admin.saveData(admin);
+								reset();
+								// ScheduleGUI();
 							}
 				}
 
