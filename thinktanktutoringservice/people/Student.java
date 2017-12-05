@@ -75,6 +75,13 @@ public boolean makeAppointment(Slot newslot) {
 	this.schedule.addSlot(newslot);
 	return true;
 }
+public boolean dropCourse(Course c) {
+	if(this.courses.contains(c)) {
+		this.courses.remove(c);
+		return true;
+	}
+	else return false;
+}
 
 
 
