@@ -110,11 +110,13 @@ public static void main (String[] args) {
 	t6.addSlot(ts10);
 	t6.addSlot(ts11);
 	 DropinSlot ds1 = new DropinSlot("2017/4/12", "Monday", "1:00", "3:00", r6);
+	 database.addDropinHours(ds1);
 	 ds1.addTutor(t1);
 	 ds1.addTutor(t6);
 	 ds1.addCourse(c1);
 	 ds1.addCourse(c3);
 	 DropinSlot ds2 = new DropinSlot("2017/4/12", "Monday", "3:00", "6:00", r7);
+	 database.addDropinHours(ds2);
 	 ds2.addTutor(t2);
 	 ds2.addTutor(t5);
 	 ds2.addCourse(c4);
@@ -156,10 +158,10 @@ public static void main (String[] args) {
 	 master.rooms.add(r8);
 	 master.rooms.add(r9);
 	 Admin.saveData(database);
-	 Admin check = new Admin();
-	 check = Admin.loadData();
-	 TutorGUI tts = new TutorGUI(check, t1);
 	 
+
+	// TutorGUI tts = new TutorGUI(check, t1);
+	
 	 
 //	 master.schedule.addSlot(ds1);
 //	 master.dropinSchedule.addSlot(ds2);
