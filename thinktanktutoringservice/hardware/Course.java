@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Course implements Serializable {
 
 	private String name;
-	private int number;
+	private Integer number;
 	private Department department;
 	private ArrayList<Tutor> tutors;
 	public Course() {
@@ -15,7 +15,7 @@ public class Course implements Serializable {
 	this.department = null;
 	this.tutors = new ArrayList<Tutor>();
 	}
-	public Course(String name,  int number, Department department) {
+	public Course(String name,  Integer number, Department department) {
 		this.name = name;
 		this.number = number;
 		this.department = department;
@@ -28,10 +28,10 @@ public class Course implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getNumber() {
+	public Integer getNumber() {
 		return number;
 	}
-	public void setNumber(int number) {
+	public void setNumber(Integer number) {
 		this.number = number;
 	}
 	public Department getDepartment() {
