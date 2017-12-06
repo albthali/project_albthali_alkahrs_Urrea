@@ -24,21 +24,19 @@ import org.thinktanktutoringservice.people.Student;
 import org.thinktanktutoringservice.hardware.*;
 import java.util.*;
 public class StudentGUI extends JFrame {
-	
+
 	   private JPanel panel;    // A panel container
 	   private Admin admins;
 	   private MasterSchedule MS;
-	
-	  
-	   
-	  // private JButton cancelButton;       // Performs calculation
+
+
+
 	   private final int WINDOW_WIDTH = 400;  // Window width
 	   private final int WINDOW_HEIGHT = 400; // Window height
 	   private MasterSchedule masterSchedule; // should be public
 	   private Student student;
-	   //private String action; // true = add false = drop
-	   
-	
+
+
 	public StudentGUI(Student student, Admin admin) {
 		super("Hi, "+ student.getName());
 		this.student = student;
@@ -46,13 +44,9 @@ public class StudentGUI extends JFrame {
 		this.MS = admin.getMasterschedule();
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	      // Specify what happens when the close
-	      // button is clicked.
+
 	     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	     JTabbedPane tabbedPane = new JTabbedPane();
-
-	      // Build the panel and add it to the frame.
-	      //buildPanel();
 
 	      // Add the panel to the frame's content pane.
 	      tabbedPane.addTab("Home", HomePanel());
@@ -62,13 +56,13 @@ public class StudentGUI extends JFrame {
 	      setVisible(true);
 	      // Display the window.
 	}
-	
+
 	 private JPanel HomePanel()
 	   {
-		 
+
 		 JButton addCourseButton;       // Performs calculation
 		 JButton dropCourseButton;
-		   
+
 	      // Buttons
 		 addCourseButton = new JButton("Add Course");
 		 dropCourseButton = new JButton("Drop Course");
@@ -78,29 +72,28 @@ public class StudentGUI extends JFrame {
 		 dropCourseButton.addActionListener(new dropCourseListener());
 
 	      // Create a panel to hold the components.
-	      panel = new JPanel();	      
-	      // Add the label, text field, and button to the panel.
-	      /////// Need to align these!!!!!!
+	      panel = new JPanel();
+	     // For student pic
 	      JPanel dummyPanel = new JPanel();
 	      dummyPanel.add(addCourseButton);
 	      dummyPanel.add(dropCourseButton);
 	      dummyPanel.setVisible(true);
-	      
+
 	      // for pic and student information
 	      JPanel dummyPanelpic = new JPanel();
 	      ImageIcon imageIcon = new ImageIcon("/Users/x/Desktop/SelfPortrait.jpg"); // load the image to a imageIcon
-	      Image image = imageIcon.getImage(); // transform it 
-	      Image newimg = image.getScaledInstance(140, 145,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+	      Image image = imageIcon.getImage(); // transform it
+	      Image newimg = image.getScaledInstance(140, 145,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
 	      imageIcon = new ImageIcon(newimg);  // transform it back
 	      dummyPanelpic.add(new JLabel(imageIcon));
 	      JTextArea ta = new JTextArea(9,11);
 	      String string = new String();
 	      string = student.getName()+"\n"+student.getEmail()+"\nMajor: "+student.getDepartment().getName();
-	      
+
 	      ta.setText(string);
 	      dummyPanelpic.add(ta);
-	      
-	      
+
+
 	      panel.setLayout(new BorderLayout());
 	      panel.add(dummyPanelpic,BorderLayout.CENTER);
 	      panel.add(dummyPanel,BorderLayout.SOUTH);
@@ -108,10 +101,10 @@ public class StudentGUI extends JFrame {
 	      return panel;
 
 	   }
-	 
+
 	 private JPanel SchedulePanel()
 	 {
-		
+
 		 panel = new JPanel();
 		//String datas[][];
 		ArrayList<Slot> ds = new ArrayList<Slot>();
@@ -125,7 +118,7 @@ public class StudentGUI extends JFrame {
 //					 datas.add(Integer.toString(t.getiD()));
 //					 datas.add(t.getName());
 //					 datas.add(String.valueOf(t.getPayrate()));
-					 
+
 				 }
 			 }
 		 }
@@ -136,19 +129,19 @@ public class StudentGUI extends JFrame {
 			 datas[i][2] = ds.get(i).getDate();
 			 datas[i][3] = ds.get(i).getTimestart() + "-" + ds.get(i).getTimend();
 		 }
-		 String data[][]={ {"101","Amit","670000"},    
-                 {"102","Jai","780000"},    
-                 {"101","Sachin","700000"}};    
-		 String column[]={"Building","Room#","date", "time"};         
-		 JTable jt=new JTable(datas,column);    
-		 jt.setBounds(50,50,400,400);          
+		 String data[][]={ {"101","Amit","670000"},
+                 {"102","Jai","780000"},
+                 {"101","Sachin","700000"}};
+		 String column[]={"Building","Room#","date", "time"};
+		 JTable jt=new JTable(datas,column);
+		 jt.setBounds(50,50,400,400);
 		 JScrollPane sp=new JScrollPane(jt);
 		 panel.add(jt);
 		 panel.setVisible(true);
-		
-		return panel; 
+
+		return panel;
 	 }
-	 
+
 	private JPanel AppointmentPanel() {
 		 panel = new JPanel();
 			//String datas[][];
@@ -163,7 +156,7 @@ public class StudentGUI extends JFrame {
 //						 datas.add(Integer.toString(t.getiD()));
 //						 datas.add(t.getName());
 //						 datas.add(String.valueOf(t.getPayrate()));
-						 
+
 					 }
 				 }
 			 }
@@ -173,36 +166,34 @@ public class StudentGUI extends JFrame {
 				 datas[i][1] = tlist.get(i).getName();
 				 datas[i][2] = String.valueOf(tlist.get(i).getPayrate());
 			 }
-		 String column[]={"ID","NAME","SALARY"};         
-		 JTable jt=new JTable(datas,column);    
-		 jt.setBounds(50,50,400,400);          
+		 String column[]={"ID","NAME","SALARY"};
+		 JTable jt=new JTable(datas,column);
+		 jt.setBounds(50,50,400,400);
 		 JScrollPane sp=new JScrollPane(jt);
 		 panel.add(jt);
 		 panel.setVisible(true);
-		
-		return panel; 
+
+		return panel;
 	}
-	 
-	 
-	 
+
+
+
 	 private class addCourseListener implements ActionListener
 	 {//
 	      public void actionPerformed(ActionEvent e)
 	      {
-				StudentAddGUI stugui = new StudentAddGUI(student,masterSchedule,"Add");    
+				StudentAddGUI stugui = new StudentAddGUI(student,masterSchedule,"Add");
 
 	      }
 	  }
-	 
+
 	 private class dropCourseListener implements ActionListener
 	 {//
 	      public void actionPerformed(ActionEvent e)
 	      {
-				StudentAddGUI stugui = new StudentAddGUI(student,masterSchedule,"Drop");    
+				StudentAddGUI stugui = new StudentAddGUI(student,masterSchedule,"Drop");
 
 	      }
 	  }
-	
+
 }
-
-
