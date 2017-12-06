@@ -88,5 +88,5 @@ public abstract class Slot implements Serializable {
 		}
 		else return false;
 	}
-	abstract ArrayList<Course> getcourse();
+	public abstract ArrayList<Course> getcourse();
 }

@@ -160,7 +160,7 @@ public static void main (String[] args) {
 	 Admin.saveData(database);
 	 
 
-	// TutorGUI tts = new TutorGUI(check, t1);
+	 TutorGUI tts = new TutorGUI(database, t1);
 	
 	 
 //	 master.schedule.addSlot(ds1);
@@ -177,7 +177,7 @@ public static void main (String[] args) {
 //	 master.dropinSchedule.addSlot(ts10);
 //	 master.dropinSchedule.addSlot(ts11);
 	 
-	
+//	AdminGUI adminGUI = new AdminGUI(database);
 	
 	
 	
